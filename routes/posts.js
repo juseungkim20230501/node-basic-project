@@ -4,10 +4,9 @@ const Posts = require('../schemas/posts.js');
 
 // 전체 게시글 목록 조회
 router.get('/', async (req, res) => {
-  const post = await Posts.find(
-    {},
-    { __v: 0, password: 0, content: 0 }.sort({ createdAt: -1 })
-  );
+  const post = await Posts.find({}, { __v: 0, password: 0, content: 0 }).sort({
+    createdAt: -1,
+  });
   const viewPost = post.map((value) => {
     return {
       post: value._id,
